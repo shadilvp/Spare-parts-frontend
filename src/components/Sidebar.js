@@ -9,11 +9,24 @@ import { IoPerson } from "react-icons/io5";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import { LuLogOut } from "react-icons/lu";
+import { fetchLogineduser } from "../serveces/userService";
+import { useQuery } from "@tanstack/react-query";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [showImagePopup, setShowImagePopup] = useState(false);
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["userProfile"],
+    queryFn: fetchLogineduser,
+  });
+
+  // console.log("data",data?.data)
+
+  const userData = data?.data?.name
+
+  // console.log("data",userData)
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const toggleDark = () => setDarkMode(!darkMode);
@@ -55,7 +68,7 @@ const Sidebar = () => {
               </div>
               {isOpen && (
                 <div>
-                  <h1 className="text-gray-900 dark:text-white font-bold text-xl">Spare Doc</h1>
+                  <h1 className="text-gray-900 dark:text-white font-bold text-xl">{userData}</h1>
                   <p className="text-gray-500 dark:text-gray-300 text-sm">Admin panel</p>
                 </div>
               )}
