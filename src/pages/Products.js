@@ -1,36 +1,51 @@
-import React, { useState } from 'react';
-import { DropdownMenu } from './ui/dropDownMenu';
-import { useQuery } from '@tanstack/react-query';
-import { fetchProducts } from '../serveces/productService';
+import React, { useState } from "react";
+import { DropdownMenu } from "./ui/dropDownMenu";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { deleteProduct, fetchProducts } from "../serveces/productService";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
+    const navigate = useNavigate();
+  const [filters, setFilters] = useState({
+    search: "",
+    condition: "",
+    category: "",
+    subCategory: "",
+    page: 1,
+    minPrice: "",
+    maxPrice: "",
+  });
 
-    const [filters, setFilters] = useState({
-        search: "",
-        condition: "",
-        category: "",
-        subCategory: "",
-        page: 1,
-        minPrice: "",
-        maxPrice: "",
-      });
-      
-      const { data, isLoading } = useQuery({
-        queryKey: ["products", filters],
-        queryFn: () => fetchProducts(filters),
-      });
-      console.log("admin Shop - Products:", data);
+  const { data, isLoading, error , refetch } = useQuery({
+    queryKey: ["products", filters],
+    queryFn: () => fetchProducts(filters),
+  });
+  console.log("admin Shop - Products:", data);
 
-    return(
-        <div className={`p-4 bg-white min-h-screen `}>
+  const handleDeleteProduct = (productId) => {
+      mutation.mutate(productId)
+  }
+
+    const mutation = useMutation({
+    mutationFn: deleteProduct,
+    onSuccess: (data) => {
+      console.log(data.message);
+      refetch();
+    },
+    onError: (error) => {
+      console.error("Product is not deleted", error);
+    },
+  });
+
+  return (
+    <div className={`p-4 bg-white min-h-screen w-5/6 md:ml-56`}>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Product List</h2>
-        {/* <Button onClick={() => router.push("/addProduct")}>Add Product</Button> */}
-
+        <button onClick={() => navigate("/add-product")} className=" border-pink-800 rounded-md p-1 px-2 shadow-md shadow-blue-600">Add Product</button>
         {/* Dropdown Menu */}
         <DropdownMenu>
           <div className="p-4 w-64 bg-white rounded shadow-md">
-            <Input
+            <input
               placeholder="Search products..."
               value={filters.search}
               onChange={(e) =>
@@ -38,38 +53,8 @@ const Products = () => {
               }
             />
 
-
-            {/* Category Filter */}
-            <div className="mt-3">
-              <h3 className="font-semibold text-gray-700">Filter by Category</h3>
-              {isLoadingCategories ? (
-                <p className="text-gray-600">Loading categories...</p>
-              ) : error ? (
-                <p className="text-red-500">Error loading categories</p>
-              ) : (
-                categories?.map((category) => (
-                  <div key={category._id} className="mt-2">
-                    <label className="font-semibold text-gray-700">{category.name}</label>
-                    <Select
-                      value={filters.category === category._id ? filters.subCategory : ""}
-                      onChange={(e) =>
-                        setFilters({ ...filters, category: category._id, subCategory: e.target.value })
-                      }
-                    >
-                      <option value="">Select {category.name}</option>
-                      {category.subCategories.map((sub) => (
-                        <option key={sub} value={sub}>
-                          {sub}
-                        </option>
-                      ))}
-                    </Select>
-                  </div>
-                ))
-              )}
-            </div>
-
             {/* Clear Filters Button */}
-            <Button
+            <button
               onClick={() =>
                 setFilters({
                   search: "",
@@ -83,7 +68,7 @@ const Products = () => {
               }
             >
               Clear Filters
-            </Button>
+            </button>
           </div>
         </DropdownMenu>
       </div>
@@ -120,17 +105,17 @@ const Products = () => {
                 <td className="border p-2">{product.quantity}</td>
                 <td className="border p-2">{product.category.name}</td>
                 <td className=" p-2 flex justify-around space-x-2">
-                  <button 
-                    className="text-blue-500 hover:text-blue-700" 
-                    onClick={()=>router.push(`/allProducts/${product._id}`)}
+                  <button
+                    className="text-blue-500 hover:text-blue-700"
+                    onClick={()=>navigate(`/Products/${product._id}`)}
                   >
-                    <Eye size={30} />
+                    View
                   </button>
                   <button className="text-green-500 hover:text-green-700">
-                    <EditButton/>
+                    Edit
                   </button>
-                  <button className="text-red-500 hover:text-red-700">
-                    <DeleteButton  />
+                  <button className="text-red-500 hover:text-red-700" onClick={()=> handleDeleteProduct(product._id)}>
+                    Delete
                   </button>
                 </td>
               </tr>
@@ -139,6 +124,6 @@ const Products = () => {
         </table>
       )}
     </div>
-    );
+  );
 };
 export default Products;

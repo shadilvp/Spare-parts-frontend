@@ -1,18 +1,58 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getAllUsers } from "../serveces/userService";
+import { blockUser, deleteUser, getAllUsers } from "../serveces/userService";
+import { useNavigate } from "react-router-dom";
 
 const Users = () => {
-  const { data: userData, isLoading, error } = useQuery({
-    queryKey: ["userProfile"],
+  const navigate = useNavigate();
+  const {
+    data: userData,
+    isLoading,
+    refetch,
+    error,
+  } = useQuery({
+    queryKey: ["users"],
     queryFn: getAllUsers,
   });
 
-  const users = Array.isArray(userData?.data)
-    ? userData?.data
-    : userData?.data
-    ? [userData.data]
-    : [];
+  console.log("users in page", userData)
+
+  const users = userData ?? [];
+
+  // console.log("object",users)
+
+  const handleViewUser = (userId) => {
+    navigate(`/users/${userId}`);
+  };
+
+  const handleDeleteUser = (userId) => {
+    mutation.mutate(userId);
+  };
+
+  const handleBlock = (userId) => {
+    mutationBlock.mutate(userId)
+  }
+    const mutationBlock = useMutation({
+    mutationFn: blockUser,
+    onSuccess: (data) => {
+      console.log(data.message);
+      refetch();
+    },
+    onError: (error) => {
+      console.error("User is not Blocked", error);
+    },
+  });
+
+  const mutation = useMutation({
+    mutationFn: deleteUser,
+    onSuccess: (data) => {
+      console.log(data.message);
+      refetch();
+    },
+    onError: (error) => {
+      console.error("User is not deleted", error);
+    },
+  });
 
   return (
     <div className="p-6 text-white ml-64">
@@ -46,9 +86,27 @@ const Users = () => {
                     </span>
                   </td>
                   <td className="px-4 py-4 text-center">
-                    <button className="text-blue-500 hover:underline mr-2">View</button>
-                    <button className="text-yellow-500 hover:underline mr-2">Edit</button>
-                    <button className="text-red-500 hover:underline">Delete</button>
+                    <button
+                      className="text-blue-500 hover:underline mr-2"
+                      onClick={() => handleViewUser(user._id)}
+                    >
+                      View
+                    </button>
+                    <button
+                      className={`${
+                        user.isBlock ? "text-green-500" : "text-orange-500"
+                      } hover:underline mr-2`}
+                      onClick={() => handleBlock(user._id)}
+                    >
+                      {user.isBlock ? "Unblock" : "Block"}
+                    </button>
+
+                    <button
+                      className="text-red-500 hover:underline"
+                      onClick={() => handleDeleteUser(user._id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))

@@ -1,34 +1,37 @@
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { MdAddModerator } from "react-icons/md";
 import { TbTrashFilled } from "react-icons/tb";
+import { deleteAdmin, getAllAdmins } from "../serveces/adminService";
 
 const AdminAccess = () => {
-  const [admins, setAdmins] = useState([
-    {
-      id: 1,
-      name: "Muhsin",
-      role: "CEO",
-      image: "https://i.ibb.co/xqNYnzWW/Whats-App-Image-2025-04-16-at-12-54-37-AM.jpg",
-    },
-    {
-      id: 2,
-      name: "Hadil",
-      role: "Managing Director",
-      image: "https://i.ibb.co/vxtWgL54/sss.png",
-    },
-    {
-      id: 3,
-      name: "Rahil Hameed",
-      role: "Finantial Director",
-      image: "https://i.ibb.co/p65sw3qm/Screenshot-2025-04-16-004533.png",
-    },
-  ]);
+  const {
+    data: adminData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: getAllAdmins,
+  });
+
+  const admins = adminData ?? [];
 
   const [showImagePopup, setShowImagePopup] = useState(false);
   const [popupImageUrl, setPopupImageUrl] = useState("");
 
-  const handleDelete = (id) => {
+  const handleDelete = (adminId) => {
+    mutation.mutate(adminId);
   };
+
+    const mutation = useMutation({
+    mutationFn: deleteAdmin,
+    onSuccess: (data) => {
+      console.log(data.message);
+    },
+    onError: (error) => {
+      console.error("Admin is not deleted", error);
+    },
+  });
 
   const handleAddAdmin = () => {
     // Logic for adding new admin
@@ -64,15 +67,24 @@ const AdminAccess = () => {
           {admins.map((admin) => (
             <tr key={admin.id}>
               <td className="py-4 px-4 flex justify-center">
-                <img
-                  src={admin.image}
-                  alt={admin.name}
-                  className="w-10 h-10 rounded-full cursor-pointer"
-                  onClick={() => handleImageClick(admin.image)}
-                />
+                {admin.profileImage ? (
+                  <img
+                    src={admin.profileImage}
+                    alt={admin.name}
+                    className="w-10 h-10 rounded-full cursor-pointer"
+                    onClick={() => handleImageClick(admin.profileImage)}
+                  />
+                ) : (
+                  <div
+                    onClick={() => handleImageClick(null)}
+                    className="w-10 h-10 rounded-full bg-blue-900 text-white flex items-center justify-center font-semibold uppercase cursor-pointer"
+                  >
+                    {admin.name?.charAt(0) || "A"}
+                  </div>
+                )}
               </td>
               <td className="py-2 px-4 text-center">{admin.name}</td>
-              <td className="py-2 px-4 text-center">{admin.role}</td>
+              <td className="py-2 px-4 text-center">{admin.adminRoll}</td>
               <td className="py-2 px-4">
                 <button
                   onClick={() => handleDelete(admin.id)}

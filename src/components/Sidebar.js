@@ -31,20 +31,27 @@ const Sidebar = () => {
   const toggleSidebar = () => setIsOpen(!isOpen);
   const toggleDark = () => setDarkMode(!darkMode);
 
-  const menu = [
-    { name: "Dashboard", icon: <HiMiniHome />, path: "/" },
-    { name: "Products", icon: <PiShoppingCartSimpleFill />, path: "/products" },
-    { name: "Orders", icon: <FaChartBar />, path: "/orders" },
-    { name: "Payments", icon: <IoIosWallet />, path: "/payments" },
-    { name: "Offers", icon: <BiSolidOffer />, path: "/offers" },
-    { name: "Users", icon: <IoPerson />, path: "/users" },
-    { name: "Chat", icon: <IoIosChatbubbles />, path: "/chat" },
-    { name: "Delivery", icon: <GiScooter />, path: "/delivery" },
-    { name: "Reports", icon: <FaBook />, path: "/reports" },
-    { name: "Notifications", icon: <FaBell />, path: "/notifications" },
-    { name: "Settings", icon: <IoIosSettings />, path: "/settings" },
-    { name: "AdminAccess", icon: <MdAdminPanelSettings />, path: "/admin-access" },
-  ];
+  if(isLoading){
+    <h1>Page IS Loading</h1>
+  }
+    if(error){
+    <h1>cant fetch data there is an error occured</h1>
+  }
+
+      const menu = [
+        { name: "Dashboard", icon: <HiMiniHome />, path: "/dashboard" },
+        { name: "Products", icon: <PiShoppingCartSimpleFill />, path: "/products" },
+        { name: "Orders", icon: <FaChartBar />, path: "/orders" },
+        { name: "Payments", icon: <IoIosWallet />, path: "/payments" },
+        { name: "Offers", icon: <BiSolidOffer />, path: "/offers" },
+        { name: "Users", icon: <IoPerson />, path: "/users" },
+        { name: "Chat", icon: <IoIosChatbubbles />, path:"/chat"},
+        { name: "Delivery", icon: <GiScooter />, path: "/delivery" },
+        { name: "Reports", icon: <FaBook />, path: "/reports" },
+        { name: "Notifications", icon: <FaBell />, path: "/notifications" },
+        { name: "Settings", icon: <IoIosSettings />, path: "/settings" },
+        { name: "AdminAccess", icon: <MdAdminPanelSettings />, path: "/admin-access" },
+      ];
 
   return (
     <div className={`${darkMode ? "dark" : ""}`}>

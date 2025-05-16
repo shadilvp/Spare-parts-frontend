@@ -14,6 +14,9 @@ import Notifications from "./pages/Notifications";
 import Settings from "./pages/Settings";
 import AdminAccess from "./pages/AdminAccess";
 import Login from "./pages/authantication/loginPage";
+import UserDetailedview from "./pages/UserDetailedview";
+import ProductDetailedview from "./pages/ProductsDetailedView";
+import AddProduct from "./pages/addProduct";
 
 // Separate component to use useLocation inside Router
 const AppContent = () => {
@@ -28,10 +31,13 @@ const AppContent = () => {
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/products/:productId" element={<ProductDetailedview />} />
+          <Route path="/add-product" element={<AddProduct />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/payments" element={<Payments />} />
           <Route path="/offers" element={<Offers />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/users/:userId" element={<UserDetailedview />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/delivery" element={<Delivery />} />
           <Route path="/reports" element={<Reports />} />
