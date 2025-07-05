@@ -3,20 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@radix-ui/react-select": "^2.2.5",
     "@tanstack/react-query": "^5.74.4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.8.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "formik": "^2.4.6",
     "lucide-react": "^0.510.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.5.0",
     "react-scripts": "5.0.1",
+    "styled-components": "^6.1.19",
     "sweetalert2": "^11.21.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwind-variants": "^1.0.0",
+    "tailwindcss-animate": "^1.0.7",
     "web-vitals": "^2.1.4",
     "yup": "^1.6.1"
   },
@@ -24,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "shadcn": "shadcn-ui"
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +55,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.1"
+    "postcss": "^8.5.6",
+    "shadcn-ui": "^0.9.5",
+    "tailwindcss": "^3.4.17"
   }
 }

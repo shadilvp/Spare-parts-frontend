@@ -81,9 +81,9 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="h-full ml-64 flex justify-center">
-      <div className="w-5/6 h-7/10 bg-[#fff] rounded-xl shadow-xl shadow-blue-700 border-blue-800 flex flex-col items-center justify-between">
-        <h1 className="text-center mt-5 font-medium text-3xl">ADD PRODUCT</h1>
+    <div className=" flex justify-center text-white">
+      <div className="w-5/6 h-7/10 bg-[#1e1e3a] rounded-xl shadow-sm shadow-blue-700 border border-blue-800 flex flex-col items-center justify-between">
+        <h1 className="text-center mt-5 font-medium text-3xl text-white">ADD PRODUCT</h1>
         <div className="flex">
           <div className="flex m-5 ml-10 flex-col gap-3">
             <label className="text-gray-600">
@@ -95,7 +95,7 @@ const AddProduct = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="border p-2 rounded-lg shadow-lg   font-extralight"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929] font-extralight"
               />
             </label>
             <label className="text-gray-600">
@@ -106,7 +106,7 @@ const AddProduct = () => {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                className="border p-2 rounded-lg shadow-lg   font-extralight"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight"
               />
             </label>
             <label className="text-gray-600">
@@ -118,7 +118,7 @@ const AddProduct = () => {
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
-                className="border p-2 rounded-lg shadow-lg   font-extralight"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight"
               />
             </label>
             <label>
@@ -130,7 +130,7 @@ const AddProduct = () => {
                 name="brand"
                 value={formData.brand}
                 onChange={handleChange}
-                className="border p-2 rounded-lg shadow-lg   font-extralight"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight"
               />
             </label>
             <label>
@@ -138,7 +138,7 @@ const AddProduct = () => {
               <select
                 name="category"
                 id="category"
-                className="border p-2 rounded-lg shadow-lg   font-extralight text-gray-400"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight text-gray-400"
                 required
                 value={formData.category}
                 onChange={handleChange}
@@ -176,7 +176,7 @@ const AddProduct = () => {
               <select
                 name="vehicleType"
                 id="vehicleType"
-                className="border p-2 rounded-lg shadow-lg   font-extralight text-gray-400"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight text-gray-400"
                 required
                 value={formData.vehicleType}
                 onChange={handleChange}
@@ -197,7 +197,7 @@ const AddProduct = () => {
                 name="quantity"
                 value={formData.quantity}
                 onChange={handleChange}
-                className="border p-2 rounded-lg shadow-lg   font-extralight"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight"
               />
             </label>
             <label className="text-gray-600">
@@ -208,7 +208,7 @@ const AddProduct = () => {
                 name="vehicleCompatibility"
                 value={formData.vehicleCompatibility}
                 onChange={handleChange}
-                className="border p-2 rounded-lg shadow-lg   font-extralight"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight"
               />
             </label>
           </div>
@@ -223,7 +223,7 @@ const AddProduct = () => {
                 name="partNumber"
                 value={formData.partNumber}
                 onChange={handleChange}
-                className="border p-2 rounded-lg shadow-lg   font-extralight"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight"
               />
             </label>
             <input
@@ -231,7 +231,7 @@ const AddProduct = () => {
               accept="image/*"
               onChange={handleImageChange}
               required
-              className="  p-3 border border-gray-300 rounded-lg text-gray-700 shadow-lg"
+              className="  p-3 border  rounded-lg text-gray-700 shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]"
             />
             <label className="text-gray-600">
               Weight :
@@ -241,7 +241,7 @@ const AddProduct = () => {
                 name="weight"
                 value={formData.weight}
                 onChange={handleChange}
-                className="border px-2 rounded-lg shadow-lg   font-extralight"
+                className="border px-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]  font-extralight"
               />
             </label>
             <div className="flex flex-col gap-2">
@@ -254,7 +254,7 @@ const AddProduct = () => {
                   name="length"
                   value={formData.length}
                   onChange={handleChange}
-                  className="border px-2 rounded-lg shadow-lg   font-extralight"
+                  className="border px-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight text-gray-500"
                 />
               </div>
               <div className="flex">
@@ -265,7 +265,7 @@ const AddProduct = () => {
                   name="width"
                   value={formData.width}
                   onChange={handleChange}
-                  className="border px-2 rounded-lg shadow-lg   font-extralight"
+                  className="border px-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight text-gray-500"
                 />
               </div>
               <div className="flex">
@@ -276,7 +276,7 @@ const AddProduct = () => {
                   name="height"
                   value={formData.height}
                   onChange={handleChange}
-                  className="border px-2 rounded-lg shadow-lg   font-extralight"
+                  className="border px-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight text-gray-500"
                 />
               </div>
             </div>
@@ -288,7 +288,7 @@ const AddProduct = () => {
                 name="material"
                 value={formData.material}
                 onChange={handleChange}
-                className="border p-2 rounded-lg shadow-lg   font-extralight"
+                className="border p-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight"
               />
             </label>
             <label className="flex text-gray-600">
@@ -299,13 +299,13 @@ const AddProduct = () => {
                 name="warranty"
                 value={formData.warranty}
                 onChange={handleChange}
-                className="w-28 mr-3 border px-2 rounded-lg shadow-lg   font-extralight text-gray-400"
+                className="w-28 mr-3 border px-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight text-gray-400"
               />
               <select
                 name="period"
                 id="period"
                 onClick={handleGetPeriod}
-                className="border px-2 rounded-lg shadow-lg   font-extralight text-gray-400"
+                className="border px-2 rounded-lg shadow-sm  border-blue-500 shadow-blue-600 bg-[#191929]   font-extralight text-gray-400"
               >
                 <option value="">select period</option>
                 <option value="month">Month</option>
@@ -317,7 +317,7 @@ const AddProduct = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="px-6 py-3 border-blue-700 border-1 text-black rounded-lg flex items-center justify-center gap-2 w-52 mb-5 shadow-lg shadow-blue-700"
+          className="px-6 py-3 border border-blue-700 border-1 text-white rounded-lg flex items-center justify-center gap-2 w-52 mb-5 shadow-sm shadow-blue-700"
         >
           <FiPlus />
           Add Product

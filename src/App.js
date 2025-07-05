@@ -17,6 +17,8 @@ import Login from "./pages/authantication/loginPage";
 import UserDetailedview from "./pages/UserDetailedview";
 import ProductDetailedview from "./pages/ProductsDetailedView";
 import AddProduct from "./pages/addProduct";
+import Register from "./pages/authantication/registerPage";
+import AddCatagory from "./pages/AddCatagory";
 
 // Separate component to use useLocation inside Router
 const AppContent = () => {
@@ -24,11 +26,13 @@ const AppContent = () => {
   const isAuthPage = location.pathname === "/";
 
   return (
-    <div className="flex">
+    <div>
       {!isAuthPage && <Sidebar />}
-      <div className={`flex-1 ${!isAuthPage ? "p-6 bg-gray-900" : ""} min-h-screen`}>
+
+      <div className={`flex-1 min-h-screen ${!isAuthPage ? "ml-64 bg-gray-900 h-screen" : "p-0"}`}>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:productId" element={<ProductDetailedview />} />
@@ -44,6 +48,7 @@ const AppContent = () => {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/admin-access" element={<AdminAccess />} />
+          <Route path="/addCategory" element={<AddCatagory />} />
         </Routes>
       </div>
     </div>

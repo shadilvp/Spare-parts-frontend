@@ -92,7 +92,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="bg-[#2c2e3a] ml-64 min-h-full text-[#9e9e9e] flex items-center justify-center">
+    <div className="bg-[#2c2e3a] min-h-full text-[#9e9e9e] flex items-center justify-center">
       <div className="flex flex-col items-center justify-between border border-blue-600 rounded-xl p-6 h-[80vh] w-full max-w-xl mx-auto shadow-[0_4px_30px_rgba(0,0,255,0.3)]">
         <h1 className="text-5xl font-semibold text-[#706e6e] custom-stroke ">
           Send Message

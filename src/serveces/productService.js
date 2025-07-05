@@ -35,6 +35,39 @@ export const addProduct = async (data) => {
       "Content-Type": "multipart/form-data",
     },
   });
-  console.log(response.data)
+  console.log(response.data);
   return response.data;
 };
+
+export const createCategory = async (data) => {
+  const response = await axiosInstance.post("/category", data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  console.log(response.data);
+  return response.data;
+};
+
+export const fetchCategory = async () => {
+  const response = await axiosInstance.get('/category')
+  // console.log("catagories",response.data.categories)
+  return response.data.categories
+}
+
+
+export const createSubCategory = async (data) => {
+  const response = await axiosInstance.post("/sub-category", data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  console.log(response.data);
+  return response.data;
+};
+
+export const fetchSubCategory = async () => {
+  const response = await axiosInstance.get('/sub-category')
+  // console.log("catagories",response.data.categories)
+  return response.data.subSubCategories
+}
