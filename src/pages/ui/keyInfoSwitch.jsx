@@ -1,16 +1,21 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const KeyInfoSwitch = () => {
+const KeyInfoSwitch = ({ value, onChange }) => {
   return (
     <StyledWrapper>
       <label htmlFor="filter" className="switch" aria-label="Toggle Filter">
-        <input type="checkbox" id="filter" />
+        <input
+          type="checkbox"
+          id="filter"
+          checked={value === "advanced"}
+          onChange={(e) => onChange(e.target.checked ? "advanced" : "general")}
+        />
         <span>Genaral</span>
         <span>Advanced</span>
       </label>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .switch {
@@ -21,7 +26,7 @@ const StyledWrapper = styled.div`
     --_slider-txt-clr: #ffffff;
     --_label-padding: 0.2rem 0.8rem; /* padding around the labels -  this gives the switch it's global width and height */
     --_switch-easing: cubic-bezier(
-      0.30,
+      0.3,
       1.36,
       0.15,
       0.8
@@ -67,8 +72,7 @@ const StyledWrapper = styled.div`
     background-color: var(--_slider-bg-clr);
     inset: var(--_switch-padding) 50% var(--_switch-padding)
       var(--_switch-padding);
-    transition:
-      inset 500ms var(--_switch-easing),
+    transition: inset 500ms var(--_switch-easing),
       background-color 500ms ease-in-out;
     z-index: -1;
   }
@@ -110,6 +114,7 @@ const StyledWrapper = styled.div`
   }
   .switch > input:checked ~ span:last-of-type {
     opacity: 1;
-  }`;
+  }
+`;
 
 export default KeyInfoSwitch;

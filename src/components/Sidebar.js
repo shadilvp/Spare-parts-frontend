@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [showImagePopup, setShowImagePopup] = useState(false);
 
   const { data, isLoading, error } = useQuery({

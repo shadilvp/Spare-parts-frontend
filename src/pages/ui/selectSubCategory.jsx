@@ -1,7 +1,7 @@
 import React from "react";
 
-export function SelectCategoryScrollable({ categories = [], setCategoryId }) {
-  if (!Array.isArray(categories)) return <div>Loading...</div>;
+export function SelectSubCategoryScrollable({ subCategories = [], setSubCategoryId }) {
+  // if (!Array.isArray(categories)) return <div>Loading...</div>;
 
   return (
     <div className="w-full my-3">
@@ -10,17 +10,17 @@ export function SelectCategoryScrollable({ categories = [], setCategoryId }) {
       </label>
       <select
         id="category"
-        onChange={(e) => setCategoryId(e.target.value)}
+        onChange={(e) => setSubCategoryId(e.target.value)}
         className=" px-3 py-2 border border-gray-300 rounded bg-[#27262d51] text-white text-sm"
         defaultValue=""
       >
         <option value="" disabled className="text-xs">
-          -- Select a category --
+          -- Select a SubCategory --
         </option>
-        {categories.length > 0 ? (
-          categories.map((cat) => (
+        {subCategories.length > 0 ? (
+          subCategories.map((cat) => (
             <option key={cat._id} value={cat._id}>
-              {cat.categoryname}
+              {cat.subCategoryname}
             </option>
           ))
         ) : (

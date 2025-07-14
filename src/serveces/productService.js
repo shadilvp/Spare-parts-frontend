@@ -12,6 +12,7 @@ export const fetchProducts = async ({
   const response = await axiosInstance.get("/products", {
     params: { page, limit, search, category, minPrice, maxPrice },
   });
+  console.log("products fetched", response.data)
   return response.data;
 };
 
@@ -26,11 +27,11 @@ export const deleteProduct = async (productId) => {
 };
 
 export const addProduct = async (data) => {
-  // console.log("data in service:");
-  // for (let pair of data.entries()) {
-  //   console.log(pair[0] + ": " + pair[1]);
-  // }
-  const response = await axiosInstance.post("/add-product", data, {
+  console.log("data in service:");
+  for (let pair of data.entries()) {
+    console.log(pair[0] + ": " + pair[1]);
+  }
+  const response = await axiosInstance.post("/products/add", data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -66,8 +67,9 @@ export const createSubCategory = async (data) => {
   return response.data;
 };
 
-export const fetchSubCategory = async () => {
-  const response = await axiosInstance.get('/sub-category')
-  // console.log("catagories",response.data.categories)
-  return response.data.subSubCategories
+export const fetchSubCategory = async (catagoryId) => {
+  // console.log(catagoryId)
+  const response = await axiosInstance.get(`/sub-category/${catagoryId}`)
+  // console.log("catagories",response.data)
+  return response.data.subCategories
 }

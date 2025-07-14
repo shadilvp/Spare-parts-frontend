@@ -99,6 +99,7 @@ const Products = () => {
                 <th className=" p-2 w-16">Image</th>
                 <th className=" p-2">Name</th>
                 <th className=" p-2">Price</th>
+                <th className=" p-2">Mrp</th>
                 <th className=" p-2">Quantity</th>
                 <th className=" p-2">Category</th>
                 <th className=" p-2">Actions</th>
@@ -117,6 +118,7 @@ const Products = () => {
                   </td>
                   <td className=" p-2">{product.name}</td>
                   <td className=" p-2">${product.price}</td>
+                  <td className=" p-2">${product.mrp}</td>
                   <td className=" p-2">{product.quantity}</td>
                   <td className=" p-2">{product.category.name}</td>
                   <td className=" p-2 flex justify-around space-x-2">

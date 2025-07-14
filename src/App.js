@@ -29,7 +29,7 @@ const AppContent = () => {
     <div>
       {!isAuthPage && <Sidebar />}
 
-      <div className={`flex-1 min-h-screen ${!isAuthPage ? "ml-64 bg-gray-900 h-screen" : "p-0"}`}>
+      <div className={`flex-1 min-h-screen ${!isAuthPage ? "ml-64 bg-gray-900" : "p-0"}`}>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
