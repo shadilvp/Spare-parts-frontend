@@ -12,7 +12,7 @@ export const fetchProducts = async ({
   const response = await axiosInstance.get("/products", {
     params: { page, limit, search, category, minPrice, maxPrice },
   });
-  console.log("products fetched", response.data)
+  console.log("products fetched", response.data);
   return response.data;
 };
 
@@ -27,10 +27,10 @@ export const deleteProduct = async (productId) => {
 };
 
 export const addProduct = async (data) => {
-  console.log("data in service:");
-  for (let pair of data.entries()) {
-    console.log(pair[0] + ": " + pair[1]);
-  }
+  // console.log("data in service:");
+  // for (let pair of data.entries()) {
+  //   console.log(pair[0] + ": " + pair[1]);
+  // }
   const response = await axiosInstance.post("/products/add", data, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -38,6 +38,19 @@ export const addProduct = async (data) => {
   });
   console.log(response.data);
   return response.data;
+};
+
+export const editProduct = async (data, productId) => {
+  const response = await axiosInstance.put(
+    `/products/edit/${productId}`,
+    data,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  console.log(response.data)
 };
 
 export const createCategory = async (data) => {
@@ -51,13 +64,13 @@ export const createCategory = async (data) => {
 };
 
 export const fetchCategory = async () => {
-  const response = await axiosInstance.get('/category')
+  const response = await axiosInstance.get("/category");
   // console.log("catagories",response.data.categories)
-  return response.data.categories
-}
-
+  return response.data.categories;
+};
 
 export const createSubCategory = async (data) => {
+  console.log("subCatagory data", data)
   const response = await axiosInstance.post("/sub-category", data, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -69,7 +82,7 @@ export const createSubCategory = async (data) => {
 
 export const fetchSubCategory = async (catagoryId) => {
   // console.log(catagoryId)
-  const response = await axiosInstance.get(`/sub-category/${catagoryId}`)
+  const response = await axiosInstance.get(`/sub-category/${catagoryId}`);
   // console.log("catagories",response.data)
-  return response.data.subCategories
-}
+  return response.data.subCategories;
+};

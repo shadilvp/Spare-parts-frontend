@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { BiSolidOffer } from "react-icons/bi";
 import { FaChartBar, FaBell, FaBook } from "react-icons/fa";
 import { GiScooter } from "react-icons/gi";
@@ -24,34 +24,46 @@ const Sidebar = () => {
 
   // console.log("data",data?.data)
 
-  const userData = data?.data?.name
+  const userData = data?.data?.name;
 
   // console.log("data",userData)
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const toggleDark = () => setDarkMode(!darkMode);
 
-  if(isLoading){
-    <h1>Page IS Loading</h1>
+  if (isLoading) {
+    <h1>Page IS Loading</h1>;
   }
-    if(error){
-    <h1>cant fetch data there is an error occured</h1>
+  if (error) {
+    <h1>cant fetch data there is an error occured</h1>;
   }
 
-      const menu = [
-        { name: "Dashboard", icon: <HiMiniHome />, path: "/dashboard" },
-        { name: "Products", icon: <PiShoppingCartSimpleFill />, path: "/products" },
-        { name: "Orders", icon: <FaChartBar />, path: "/orders" },
-        { name: "Payments", icon: <IoIosWallet />, path: "/payments" },
-        { name: "Offers", icon: <BiSolidOffer />, path: "/offers" },
-        { name: "Users", icon: <IoPerson />, path: "/users" },
-        { name: "Chat", icon: <IoIosChatbubbles />, path:"/chat"},
-        { name: "Delivery", icon: <GiScooter />, path: "/delivery" },
-        { name: "Reports", icon: <FaBook />, path: "/reports" },
-        { name: "Notifications", icon: <FaBell />, path: "/notifications" },
-        { name: "Settings", icon: <IoIosSettings />, path: "/settings" },
-        { name: "AdminAccess", icon: <MdAdminPanelSettings />, path: "/admin-access" },
-      ];
+  const menu = [
+    { name: "Dashboard", icon: <HiMiniHome />, path: "/dashboard" },
+    { name: "Products", icon: <PiShoppingCartSimpleFill />, path: "/products" },
+    { name: "Orders", icon: <FaChartBar />, path: "/orders" },
+    { name: "Payments", icon: <IoIosWallet />, path: "/payments" },
+    { name: "Offers", icon: <BiSolidOffer />, path: "/offers" },
+    { name: "Users", icon: <IoPerson />, path: "/users" },
+    { name: "Chat", icon: <IoIosChatbubbles />, path: "/chat" },
+    { name: "Delivery", icon: <GiScooter />, path: "/delivery" },
+    { name: "Reports", icon: <FaBook />, path: "/reports" },
+    { name: "Notifications", icon: <FaBell />, path: "/notifications" },
+    { name: "Settings", icon: <IoIosSettings />, path: "/settings" },
+    {
+      name: "AdminAccess",
+      icon: <MdAdminPanelSettings />,
+      path: "/admin-access",
+    },
+  ];
+
+  const handleGoBack = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      window.history.back(); // Native browser back
+    } else {
+      window.location.href = '/dashboard'; // Redirect to dashboard
+    }
+  };
 
   return (
     <div className={`${darkMode ? "dark" : ""}`}>
@@ -75,13 +87,17 @@ const Sidebar = () => {
               </div>
               {isOpen && (
                 <div>
-                  <h1 className="text-gray-900 dark:text-white font-bold text-xl">{userData}</h1>
-                  <p className="text-gray-500 dark:text-gray-300 text-sm">Admin panel</p>
+                  <h1 className="text-gray-900 dark:text-white font-bold text-xl">
+                    {userData}
+                  </h1>
+                  <p className="text-gray-500 dark:text-gray-300 text-sm">
+                    Admin panel
+                  </p>
                 </div>
               )}
             </div>
             <span className="p-3 hover:bg-gray-800 rounded-full cursor-pointer transition-colors duration-200">
-              <LuLogOut className="text-white text-xl" />
+              <LuLogOut className="text-white text-xl" onClick={handleGoBack} />
             </span>
           </div>
 

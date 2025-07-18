@@ -1,9 +1,11 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { blockUser, deleteUser, getAllUsers } from "../serveces/userService";
 import { useNavigate } from "react-router-dom";
+import { LoaderIcon } from "lucide-react";
 
 const Users = () => {
   const navigate = useNavigate();
+  
   const {
     data: userData,
     isLoading,
@@ -59,9 +61,17 @@ const Users = () => {
         <h1 className="text-2xl font-semibold mb-6">User Management</h1>
 
         {isLoading ? (
-          <p>Loading users...</p>
+          <div className="flex justify-center items-center min-h-screen ">
+            <div className="w-20 h-20">
+              <LoaderIcon />
+            </div>
+          </div>
         ) : error ? (
-          <p className="text-red-500">Failed to load users</p>
+          <div className="flex justify-center items-center min-h-screen ">
+            <h2 className="text-white text-xl font-extralight">
+              An error occurred
+            </h2>
+          </div>
         ) : (
           <table className="min-w-full bg-gray-800 rounded-lg overflow-hidden">
             <thead>

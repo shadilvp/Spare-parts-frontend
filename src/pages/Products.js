@@ -3,6 +3,7 @@ import { DropdownMenu } from "./ui/dropDownMenu";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteProduct, fetchProducts } from "../serveces/productService";
 import { useNavigate } from "react-router-dom";
+import { LoaderIcon } from "lucide-react";
 
 const Products = () => {
   const navigate = useNavigate();
@@ -89,7 +90,11 @@ const Products = () => {
 
       {/* Product Table */}
       {isLoading ? (
-        <p>Loading products...</p>
+        <div className="flex justify-center items-center min-h-screen ">
+          <div className="w-20 h-20">
+            <LoaderIcon />
+          </div>
+        </div>
       ) : (
         <div className="overflow-hidden rounded-xl -2  ">
           <table className="w-full -collapse text-gray-400   mt-4 rounded-xl">
@@ -127,15 +132,6 @@ const Products = () => {
                       onClick={() => navigate(`/Products/${product._id}`)}
                     >
                       View
-                    </button>
-                    <button className="text-green-500 hover:text-green-700">
-                      Edit
-                    </button>
-                    <button
-                      className="text-red-500 hover:text-red-700"
-                      onClick={() => handleDeleteProduct(product._id)}
-                    >
-                      Delete
                     </button>
                   </td>
                 </tr>
