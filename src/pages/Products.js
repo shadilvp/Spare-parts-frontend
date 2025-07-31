@@ -9,7 +9,6 @@ const Products = () => {
   const navigate = useNavigate();
   const [filters, setFilters] = useState({
     search: "",
-    condition: "",
     category: "",
     subCategory: "",
     page: 1,
@@ -22,10 +21,6 @@ const Products = () => {
     queryFn: () => fetchProducts(filters),
   });
   console.log("admin Shop - Products:", data);
-
-  const handleDeleteProduct = (productId) => {
-    mutation.mutate(productId);
-  };
 
   const mutation = useMutation({
     mutationFn: deleteProduct,
@@ -59,7 +54,7 @@ const Products = () => {
 
         {/* Dropdown Menu */}
         <DropdownMenu>
-          <div className="p-4 w-64 bg-white rounded shadow-md">
+          <div className="p-4 w-64  rounded shadow-md">
             <input
               placeholder="Search products..."
               value={filters.search}
@@ -107,6 +102,7 @@ const Products = () => {
                 <th className=" p-2">Mrp</th>
                 <th className=" p-2">Quantity</th>
                 <th className=" p-2">Category</th>
+                <th className=" p-2">Sub Category</th>
                 <th className=" p-2">Actions</th>
               </tr>
             </thead>
@@ -124,9 +120,20 @@ const Products = () => {
                   <td className=" p-2">{product.name}</td>
                   <td className=" p-2">${product.price}</td>
                   <td className=" p-2">${product.mrp}</td>
-                  <td className=" p-2">{product.quantity}</td>
-                  <td className=" p-2">{product.category.name}</td>
-                  <td className=" p-2 flex justify-around space-x-2">
+                  <td className="p-2">
+                    {product.quantity < 1 ? (
+                      <span className="text-red-500 font-semibold">
+                        Out of Stock
+                      </span>
+                    ) : (
+                      product.quantity
+                    )}
+                  </td>
+                  <td className=" p-2">{product.category.categoryname}</td>
+                  <td className=" p-2">
+                    {product.subCategory.subCategoryname}
+                  </td>
+                  <td className=" p-2">
                     <button
                       className="text-blue-500 hover:text-blue-700"
                       onClick={() => navigate(`/Products/${product._id}`)}

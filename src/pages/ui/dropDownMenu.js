@@ -5,7 +5,7 @@ export function DropdownMenu({ children }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative z-40">
+    <div className="relative ">
       <button onClick={() => setIsOpen(!isOpen)} className="border px-4 py-2 rounded">
         Filters
       </button>

@@ -11,3 +11,8 @@ export const deleteAdmin = async (adminId) => {
     const response = await axiosInstance.put("/delete-admin", adminId)
     return response.data
 }
+
+export const adminDashboard = async () => {
+  const response = await axiosInstance.get('/dashboard');
+  return response.data;
+}
